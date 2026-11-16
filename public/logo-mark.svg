@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0F172A"/>
+  <!-- Lab Flask Outline -->
+  <path d="M26 14H38M29 14V23L19 42C17.8 44.3 19.5 47 22.1 47H41.9C44.5 47 46.2 44.3 45 42L35 23V14" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Fountain Pen Nib Inside -->
+  <path d="M32 25L27 36L32 41L37 36L32 25Z" fill="#2563EB" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="32" cy="34" r="1.5" fill="#FFFFFF"/>
+</svg>
