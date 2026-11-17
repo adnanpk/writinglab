@@ -52,19 +52,36 @@ async function saveToDrive(ref: string, details: string, file: File | null) {
   return folder.data.webViewLink ?? null;
 }
 
-async function sendEmails(ref: string, d: Record<string, string>, details: string, driveLink: string | null, file: File | null) {
-  const key = process.env.RESEND_API_KEY, to = process.env.LEADS_TO_EMAIL, from = process.env.LEADS_FROM_EMAIL;
-  if (!key || !to || !from) return false;
+type Mail = { from: string; to: string; cc?: string[]; replyTo?: string; subject: string; html: string; attachments?: { filename: string; content: Buffer }[] };
+
+// Provider 1: your own mailbox over SMTP (e.g. Hostinger email). Provider 2: Resend.
+const smtpConfigured = () => !!(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
+const emailConfigured = () => smtpConfigured() || !!process.env.RESEND_API_KEY;
+
+async function deliver(m: Mail) {
+  if (smtpConfigured()) {
+    const nodemailer = (await import("nodemailer")).default;
+    const port = Number(process.env.SMTP_PORT || 465);
+    const tx = nodemailer.createTransport({ host: process.env.SMTP_HOST, port, secure: port === 465, auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS } });
+    await tx.sendMail({ from: m.from, to: m.to, cc: m.cc, replyTo: m.replyTo, subject: m.subject, html: m.html, attachments: m.attachments });
+    return;
+  }
   const { Resend } = await import("resend");
-  const resend = new Resend(key);
+  const r = await new Resend(process.env.RESEND_API_KEY!).emails.send({ from: m.from, to: m.to, ...(m.cc?.length ? { cc: m.cc } : {}), ...(m.attachments ? { attachments: m.attachments } : {}), ...(m.replyTo ? { replyTo: m.replyTo } : {}), subject: m.subject, html: m.html });
+  if (r.error) throw new Error(r.error.message);
+}
+
+async function sendEmails(ref: string, d: Record<string, string>, details: string, driveLink: string | null, file: File | null) {
+  const to = process.env.LEADS_TO_EMAIL;
+  const from = process.env.LEADS_FROM_EMAIL || (smtpConfigured() ? process.env.SMTP_USER : undefined);
+  if (!emailConfigured() || !to || !from) return false;
   const cc = (process.env.LEADS_CC_EMAIL || "").split(",").map((x) => x.trim()).filter(Boolean);
   const attachments = file ? [{ filename: file.name, content: Buffer.from(await file.arrayBuffer()) }] : undefined;
   const html = `<h2>New ${esc(d.type)} request: ${esc(ref)}</h2><pre style="font:14px/1.5 monospace;white-space:pre-wrap">${esc(details)}</pre>${driveLink ? `<p><a href="${esc(driveLink)}">Open Drive folder</a></p>` : file ? "<p>The manuscript is attached to this email.</p>" : ""}`;
-  const r1 = await resend.emails.send({ from, to, ...(cc.length ? { cc } : {}), ...(attachments ? { attachments } : {}), replyTo: d.email, subject: `[Writing Lab] ${d.type} ${ref} from ${d.name}`, html });
-  if (r1.error) throw new Error(r1.error.message);
+  await deliver({ from, to, cc, replyTo: d.email, subject: `[Writing Lab] ${d.type} ${ref} from ${d.name}`, html, attachments });
   // acknowledgement to the customer (best-effort)
   const ar = d.lang === "ar";
-  await resend.emails.send({
+  await deliver({
     from, to: d.email,
     subject: ar ? `استلمنا طلبك ${ref}` : `We received your request ${ref}`,
     html: ar ? `<div dir="rtl"><p>شكرًا ${esc(d.name)}، استلمنا طلبك. رقمك المرجعي: <b>${esc(ref)}</b>. سنراسلك قريبًا.</p><p>Writing Lab</p></div>`
@@ -98,7 +115,7 @@ export async function POST(req: Request) {
     quoteLabel ? `Quote: ${quoteLabel}` : "", `File: ${file ? `${file.name} (${(file.size / 1024).toFixed(0)} KB)` : "-"}`, `Notes: ${d.notes || "-"}`,
   ].filter(Boolean).join("\n");
 
-  const configured = !!(process.env.RESEND_API_KEY || driveAuthConfigured());
+  const configured = emailConfigured() || driveAuthConfigured();
   if (!configured) {
     if (process.env.NODE_ENV === "production") return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
     console.log("[submit:dev]\n" + details); // dev only: nothing configured yet
