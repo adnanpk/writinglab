@@ -23,7 +23,7 @@ const en = {
     perWord: "per word", subtotal: "Subtotal", volume: "Volume discount", promoLine: "Promo discount", total: "Your price",
     delivery: "Delivered in about", hours: "hours", days: "days", save: "Save", cta: "Lock in this quote", note: "Final price is confirmed after we review your file. No payment is taken on this page.",
     popular: "Most popular", from: "from",
-    turnLabels: { "8h": "8 hours", "24h": "24 hours", "3d": "3 days", "5d": "5 days" },
+    turnLabels: { "24h": "24 hours", "7d": "7 days", "15d": "15 days" },
   },
   tiers: {
     standard: { name: "Standard Editing", tag: "Accurate, fast editing on a budget", desc: "A language editor from your subject area improves clarity and readability so your text is easy to understand and free of language errors. Includes free formatting." },
@@ -33,8 +33,8 @@ const en = {
   planFeatures: {
     includes: { standard: "What's included:", premium: "Everything in Standard, plus:", pro: "Everything in Premium, plus:" },
     standard: ["Grammar, spelling & punctuation", "Clarity & readability", "Plagiarism check (similarity report)", "Free formatting to journal style", "Track Changes + clean copy", "Certificate of Editing", "NDA available", "30 days free re-editing"],
-    premium: ["Logic, structure & flow", "Terminology consistency", "Detailed editor comments", "Human-voice rewrite", "Free cover letter", "365 days free re-editing"],
-    pro: ["Peer review by a subject expert", "Response-to-reviewers editing", "Focus on high-impact journals"],
+    premium: ["Logic, structure & flow", "Terminology consistency", "Detailed editor comments", "Human-voice rewrite", "Response-to-reviewers editing", "Free cover letter", "365 days free re-editing"],
+    pro: ["Peer review by a subject expert", "Focus on high-impact journals", "Deeper review of core science and novelty"],
   },
   pricing: {
     wordsUnit: "words", compare: "Compare all features", controls: "Tailor your price",
@@ -78,7 +78,7 @@ const en = {
       { g: "Editor support", rows: [
         { f: "Detailed editor comments", v: [false, true, true] },
         { f: "Peer review by a subject expert", v: [false, false, true] },
-        { f: "Response-to-reviewers editing", v: [false, false, true] },
+        { f: "Response-to-reviewers editing", v: [false, true, true] },
       ] },
       { g: "Delivery & guarantees", rows: [
         { f: "Free formatting to journal style", v: [true, true, true] },
@@ -134,7 +134,7 @@ const en = {
     title: "Frequently asked questions",
     items: [
       { q: "Who edits my manuscript?", a: "Every manuscript is edited by a native English speaker who holds a PhD and specialises in your subject area." },
-      { q: "What is the difference between Standard, Premium and Scientific Pro?", a: "Standard corrects language and improves clarity. Premium also improves logic, structure and flow, adds detailed comments, a cover letter and 365 days of free re-editing. Scientific Pro adds a subject-expert peer review and response-to-reviewers editing after submission." },
+      { q: "What is the difference between Standard, Premium and Scientific Pro?", a: "Standard corrects language and improves clarity. Premium also improves logic, structure and flow, adds detailed comments, response-to-reviewers editing, a cover letter and 365 days of free re-editing. Scientific Pro adds a subject-expert peer review of your paper's core science and novelty." },
       { q: "Is my manuscript confidential?", a: "Yes. We offer a signed non-disclosure agreement (NDA) on request, and your files are only accessible to your assigned editor and our project team." },
       { q: "Which file types can I upload?", a: "Word (.doc, .docx) and PDF files are accepted. Other formats can be sent on request." },
       { q: "How is the price calculated?", a: "Price = word count × the per-word rate for your editing level and turnaround, less any volume discount or promo code. There is no minimum order and no word cap." },
@@ -225,7 +225,7 @@ const ar: typeof en = {
     perWord: "للكلمة", subtotal: "المجموع الفرعي", volume: "خصم الكمية", promoLine: "خصم الرمز", total: "سعرك",
     delivery: "التسليم خلال نحو", hours: "ساعات", days: "أيام", save: "وفّر", cta: "ثبّت هذا السعر", note: "يتأكد السعر النهائي بعد مراجعة ملفك. لا يتم أي دفع في هذه الصفحة.",
     popular: "الأكثر طلبًا", from: "ابتداءً من",
-    turnLabels: { "8h": "8 ساعات", "24h": "24 ساعة", "3d": "3 أيام", "5d": "5 أيام" },
+    turnLabels: { "24h": "24 ساعة", "7d": "7 أيام", "15d": "15 يومًا" },
   },
   tiers: {
     standard: { name: "التحرير القياسي", tag: "تحرير دقيق وسريع بسعر مناسب", desc: "يحسّن محرّر لغوي من تخصصك وضوح النص وقابليته للقراءة ليكون سهل الفهم وخاليًا من الأخطاء اللغوية. يشمل التنسيق مجانًا." },
@@ -235,8 +235,8 @@ const ar: typeof en = {
   planFeatures: {
     includes: { standard: "ما يشمله:", premium: "كل ما في القياسي، بالإضافة إلى:", pro: "كل ما في المتميز، بالإضافة إلى:" },
     standard: ["القواعد والإملاء وعلامات الترقيم", "الوضوح وسهولة القراءة", "فحص الانتحال (تقرير التشابه)", "تنسيق مجاني وفق أسلوب المجلة", "تتبّع التعديلات + نسخة نظيفة", "شهادة تحرير", "اتفاقية عدم إفصاح متاحة", "إعادة تحرير مجانية 30 يومًا"],
-    premium: ["المنطق والبنية والتسلسل", "اتساق المصطلحات", "تعليقات مفصّلة من المحرّر", "إعادة صياغة بأسلوب بشري طبيعي", "رسالة تقديم مجانية", "إعادة تحرير مجانية 365 يومًا"],
-    pro: ["مراجعة أقران من خبير في المجال", "تحرير الرد على المحكّمين", "تركيز على المجلات عالية التأثير"],
+    premium: ["المنطق والبنية والتسلسل", "اتساق المصطلحات", "تعليقات مفصّلة من المحرّر", "إعادة صياغة بأسلوب بشري طبيعي", "تحرير الرد على المحكّمين", "رسالة تقديم مجانية", "إعادة تحرير مجانية 365 يومًا"],
+    pro: ["مراجعة أقران من خبير في المجال", "تركيز على المجلات عالية التأثير", "مراجعة أعمق للجوهر العلمي والجِدّة"],
   },
   pricing: {
     wordsUnit: "كلمة", compare: "قارن كل المزايا", controls: "خصّص سعرك",
@@ -280,7 +280,7 @@ const ar: typeof en = {
       { g: "دعم المحرّر", rows: [
         { f: "تعليقات مفصّلة من المحرّر", v: [false, true, true] },
         { f: "مراجعة أقران من خبير في المجال", v: [false, false, true] },
-        { f: "تحرير الرد على المحكّمين", v: [false, false, true] },
+        { f: "تحرير الرد على المحكّمين", v: [false, true, true] },
       ] },
       { g: "التسليم والضمانات", rows: [
         { f: "تنسيق مجاني وفق أسلوب المجلة", v: [true, true, true] },
@@ -336,7 +336,7 @@ const ar: typeof en = {
     title: "الأسئلة الشائعة",
     items: [
       { q: "من يحرّر بحثي؟", a: "يحرّر كل بحث محرّر ناطق بالإنجليزية يحمل دكتوراه ومتخصص في مجالك." },
-      { q: "ما الفرق بين القياسي والمتميز والمحترف العلمي؟", a: "القياسي يصحّح اللغة ويحسّن الوضوح. المتميز يحسّن المنطق والبنية والتسلسل ويضيف تعليقات مفصّلة ورسالة تقديم وإعادة تحرير مجانية 365 يومًا. المحترف العلمي يضيف مراجعة أقران من خبير وتحرير الرد على المحكّمين." },
+      { q: "ما الفرق بين القياسي والمتميز والمحترف العلمي؟", a: "القياسي يصحّح اللغة ويحسّن الوضوح. المتميز يحسّن المنطق والبنية والتسلسل ويضيف تعليقات مفصّلة وتحرير الرد على المحكّمين ورسالة تقديم وإعادة تحرير مجانية 365 يومًا. المحترف العلمي يضيف مراجعة أقران من خبير للجوهر العلمي وجِدّة بحثك." },
       { q: "هل بحثي سرّي؟", a: "نعم. نوفّر اتفاقية عدم إفصاح موقّعة عند الطلب، ولا يصل إلى ملفاتك سوى المحرّر المكلّف وفريق المشروع." },
       { q: "ما أنواع الملفات المقبولة؟", a: "ملفات Word (doc, docx) وPDF. يمكن إرسال صيغ أخرى عند الطلب." },
       { q: "كيف يُحسب السعر؟", a: "السعر = عدد الكلمات × سعر الكلمة لمستوى التحرير ومدة التسليم، بعد أي خصم كمية أو رمز خصم. لا حد أدنى للطلب ولا حد أقصى للكلمات." },

@@ -1,14 +1,15 @@
 "use client";
 import { useState } from "react";
 import { useApp } from "./Providers";
+import Reveal from "./Reveal";
 export default function FaqAccordion() {
   const { t } = useApp();
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" aria-labelledby="faq-h" className="bg-page py-16 sm:py-24">
       <div className="container-x max-w-3xl">
-        <h2 id="faq-h" className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">{t.faq.title}</h2>
-        <div className="mt-10 space-y-3">
+        <Reveal><h2 id="faq-h" className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">{t.faq.title}</h2></Reveal>
+        <Reveal className="mt-10 space-y-3">
           {t.faq.items.map((it, i) => {
             const on = open === i;
             return (
@@ -24,7 +25,7 @@ export default function FaqAccordion() {
               </div>
             );
           })}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

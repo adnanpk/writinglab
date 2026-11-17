@@ -10,7 +10,7 @@ const SIZES: FontSize[] = ["sm", "md", "lg", "xl"];
 const THEMES: ThemePref[] = ["auto", "light", "dark"];
 
 export default function DisplaySettings() {
-  const { t, lang, prefs, setPref, resetPrefs } = useApp();
+  const { t, prefs, setPref, resetPrefs } = useApp();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const s = t.settings;
@@ -29,7 +29,7 @@ export default function DisplaySettings() {
   return (
     <div className="relative" ref={ref}>
       <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-haspopup="dialog" aria-label={s.open} title={s.open}
-        className="grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-ink hover:border-cobalt">
+        className="grid h-[40px] w-[40px] place-items-center rounded-full border border-line bg-surface text-ink hover:border-cobalt">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
           <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" />
         </svg>
@@ -37,12 +37,6 @@ export default function DisplaySettings() {
       {open && (
         <div role="dialog" aria-label={s.title} className="fixed inset-x-3 top-[4.5rem] z-50 max-h-[80vh] overflow-y-auto rounded-2xl sm:absolute sm:inset-x-auto sm:end-0 sm:top-12 sm:w-72 border border-line bg-surface p-4 shadow-xl animate-fadeUp">
           <p className="mb-3 font-heading text-sm font-bold">{s.title}</p>
-
-          <p className="mb-1.5 text-xs font-semibold text-muted">{s.lang}</p>
-          <div className="mb-4 flex gap-1 rounded-lg bg-mist p-1" role="group" aria-label={s.lang}>
-            <button type="button" className={seg(lang === "en")} aria-pressed={lang === "en"} onClick={() => setPref("lang", "en")}>English</button>
-            <button type="button" className={seg(lang === "ar")} aria-pressed={lang === "ar"} onClick={() => setPref("lang", "ar")}>العربية</button>
-          </div>
 
           <p className="mb-1.5 text-xs font-semibold text-muted">{s.theme}</p>
           <div className="mb-4 flex gap-1 rounded-lg bg-mist p-1" role="group" aria-label={s.theme}>

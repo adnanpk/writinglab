@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useApp } from "./Providers";
+import Reveal from "./Reveal";
 import { COMMENTS, ORIGINAL, SEGMENTS } from "@/lib/data";
 
 type Mode = "original" | "tracked" | "clean";
@@ -15,11 +16,13 @@ export default function BeforeAfterShowcase() {
   return (
     <section id="sample" aria-labelledby="show-h" className="bg-mist py-16 sm:py-20">
       <div className="container-x">
+        <Reveal>
         <div className="mx-auto max-w-2xl text-center">
           <h2 id="show-h" className="text-2xl font-extrabold sm:text-3xl">{s.title}</h2>
           <p className="mt-3 text-muted">{s.sub}</p>
         </div>
-        <div className="mt-8 grid gap-4 lg:grid-cols-[1fr_320px]">
+        </Reveal>
+        <Reveal><div className="mt-8 grid gap-4 lg:grid-cols-[1fr_320px]">
           <div className="rounded-2xl border border-line bg-surface">
             <div className="flex items-center justify-between gap-2 border-b border-line p-3">
               <div className="flex rounded-full bg-mist p-1" role="tablist" aria-label="View">
@@ -65,7 +68,7 @@ export default function BeforeAfterShowcase() {
               </ol>
             )}
           </aside>
-        </div>
+        </div></Reveal>
       </div>
     </section>
   );

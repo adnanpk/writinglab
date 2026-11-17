@@ -12,7 +12,7 @@ export default function Logo({ light = false }: { light?: boolean }) {
   return (
     <span className="inline-flex items-center gap-2.5" dir="ltr">
       <LogoMark />
-      <span className={`whitespace-nowrap font-heading text-xl font-extrabold tracking-tight ${light ? "text-white" : "text-ink"}`}>
+      <span className={`whitespace-nowrap font-heading text-[19px] font-extrabold sm:text-xl tracking-tight ${light ? "text-white" : "text-ink"}`}>
         Writing <span className="text-cobalt-fg">Lab</span>
       </span>
     </span>

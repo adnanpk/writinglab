@@ -39,7 +39,7 @@ export default function HeroCalculator() {
             </div>
             <fieldset>
               <legend className="mb-1.5 text-xs font-semibold text-muted">{c.turn}</legend>
-              <div className="grid grid-cols-4 gap-1.5 rounded-xl bg-mist p-1">
+              <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-mist p-1">
                 {TURNAROUNDS.map((tu) => {
                   const active = quote.turn === tu.id; const sv = saveBadge(tu.id);
                   return (

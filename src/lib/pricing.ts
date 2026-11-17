@@ -1,7 +1,7 @@
 // Single source of truth for rates. Base rates copied from the reference page's "From ... /word" prices (SAR).
 // Turnaround multipliers are ASSUMPTIONS (the reference page does not show them) - edit freely.
 export type TierId = "standard" | "premium" | "pro";
-export type TurnId = "8h" | "24h" | "3d" | "5d";
+export type TurnId = "24h" | "7d" | "15d";
 export type Currency = "SAR" | "USD";
 
 export const TIERS: { id: TierId; baseSAR: number; popular?: boolean }[] = [
@@ -9,12 +9,11 @@ export const TIERS: { id: TierId; baseSAR: number; popular?: boolean }[] = [
   { id: "premium", baseSAR: 0.24, popular: true },
   { id: "pro", baseSAR: 0.75 },
 ];
-// "From" price = slowest turnaround (5 days). Faster delivery costs more.
+// "From" price = slowest turnaround (15 days). Faster delivery costs more.
 export const TURNAROUNDS: { id: TurnId; mult: number; hours: number }[] = [
-  { id: "8h", mult: 2.0, hours: 8 },
   { id: "24h", mult: 1.5, hours: 24 },
-  { id: "3d", mult: 1.2, hours: 72 },
-  { id: "5d", mult: 1.0, hours: 120 },
+  { id: "7d", mult: 1.2, hours: 168 },
+  { id: "15d", mult: 1.0, hours: 360 },
 ];
 export const SAR_PER_USD = 3.75;
 export const VOLUME_TIERS = [ // words >= min -> discount
@@ -23,7 +22,7 @@ export const VOLUME_TIERS = [ // words >= min -> discount
 export const PROMOS: Record<string, number> = { WELCOME10: 0.1, LAB15: 0.15 }; // edit/add codes here
 
 export interface QuoteInput { tier: TierId; words: number; turn: TurnId; currency: Currency; promo: string }
-export const DEFAULT_QUOTE: QuoteInput = { tier: "premium", words: 5000, turn: "3d", currency: "SAR", promo: "" };
+export const DEFAULT_QUOTE: QuoteInput = { tier: "premium", words: 5000, turn: "7d", currency: "SAR", promo: "" };
 
 const conv = (sar: number, c: Currency) => (c === "USD" ? sar / SAR_PER_USD : sar);
 export const money = (n: number, c: Currency, lang: string) =>

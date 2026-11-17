@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useApp } from "./Providers";
+import Reveal from "./Reveal";
 import { SEGMENTS } from "@/lib/data";
 
 // Loops: errors get struck through, corrections appear one by one, then the cycle restarts.
@@ -30,11 +31,13 @@ export default function LiveEditAnimation() {
   return (
     <section aria-labelledby="live-h" className="bg-page py-16 sm:py-20">
       <div className="container-x">
+        <Reveal>
         <div className="mx-auto max-w-2xl text-center">
           <h2 id="live-h" className="text-2xl font-extrabold sm:text-3xl">{t.live.title}</h2>
           <p className="mt-3 text-muted">{t.live.sub}</p>
         </div>
-        <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-line bg-surface shadow-sm" role="img" aria-label={t.live.replay}>
+        </Reveal>
+        <Reveal><div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-line bg-surface shadow-sm" role="img" aria-label={t.live.replay}>
           <div className="flex items-center gap-2 border-b border-line bg-mist px-4 py-2.5">
             <span className="h-2.5 w-2.5 rounded-full bg-rose-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
             <span className="ms-3 text-xs font-semibold text-muted">{t.live.replay}</span>
@@ -55,7 +58,7 @@ export default function LiveEditAnimation() {
             })}
           </p>
           <div className="h-1 bg-line"><div className="h-full bg-cobalt transition-all duration-700" style={{ width: `${(applied / CHANGES) * 100}%` }} /></div>
-        </div>
+        </div></Reveal>
       </div>
     </section>
   );

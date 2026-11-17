@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useApp } from "./Providers";
+import Reveal from "./Reveal";
 import { TIERS } from "@/lib/pricing";
 
 export default function ComparisonMatrix() {
@@ -11,11 +12,13 @@ export default function ComparisonMatrix() {
   return (
     <section id="compare" aria-labelledby="compare-h" className="bg-page py-16 sm:py-24">
       <div className="container-x">
+        <Reveal>
         <div className="mx-auto max-w-2xl text-center">
           <h2 id="compare-h" className="text-3xl font-extrabold tracking-tight sm:text-4xl">{m.title}</h2>
           <p className="mt-3 text-muted">{m.sub}</p>
         </div>
-        <div className="relative mt-10 overflow-x-auto rounded-2xl border border-line bg-surface">
+        </Reveal>
+        <Reveal><div className="relative mt-10 overflow-x-auto rounded-2xl border border-line bg-surface">
           <table className="w-full min-w-[680px] border-collapse text-sm">
             <caption className="sr-only">{m.title}</caption>
             <thead>
@@ -55,7 +58,7 @@ export default function ComparisonMatrix() {
               </tbody>
             ))}
           </table>
-        </div>
+        </div></Reveal>
       </div>
     </section>
   );

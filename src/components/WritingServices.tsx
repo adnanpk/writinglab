@@ -1,21 +1,24 @@
 "use client";
 import { useApp } from "./Providers";
+import Reveal from "./Reveal";
 export default function WritingServices() {
   const { t, openModal } = useApp();
   const w = t.writing;
   return (
     <section id="writing" aria-labelledby="writing-h" className="bg-page py-16 sm:py-20">
       <div className="container-x">
+        <Reveal>
         <div className="mx-auto max-w-2xl text-center">
           <h2 id="writing-h" className="text-2xl font-extrabold sm:text-3xl">{w.title}</h2>
           <p className="mt-3 text-muted">{w.sub}</p>
         </div>
+        </Reveal>
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {w.items.map((it) => (
-            <li key={it.t} className="rounded-2xl border border-line bg-surface p-5">
+          {w.items.map((it, i) => (
+            <Reveal as="li" key={it.t} delay={(i % 3) * 90} className="rounded-2xl border border-line bg-surface p-5">
               <h3 className="text-base font-bold">{it.t}</h3>
               <p className="mt-1.5 text-sm text-muted">{it.d}</p>
-            </li>
+            </Reveal>
           ))}
         </ul>
         <div className="mt-8 text-center">

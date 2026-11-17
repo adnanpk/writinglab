@@ -17,10 +17,10 @@ export default function PersonaCards() {
   return (
     <section aria-labelledby="persona-h" className="bg-page pb-20 sm:pb-24">
       <div className="container-x">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal><div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-cobalt-fg">{ps.eyebrow}</p>
           <h2 id="persona-h" className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">{ps.title}</h2>
-        </div>
+        </div></Reveal>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {ps.items.map((it, i) => (
             <Reveal key={it.role} delay={i * 90}>
