@@ -63,7 +63,7 @@ export default function LeadUploadModal() {
   const set = (k: keyof typeof v) => (e: { target: { value: string } }) => setV((s) => ({ ...s, [k]: e.target.value }));
 
   const q = computeQuote(quote);
-  const summary = `${t.tiers[quote.tier].name} · ${q.words.toLocaleString()} · ${t.calc.turnLabels[quote.turn]} · ${money(q.total, quote.currency, lang)}`;
+  const summary = `${t.tiers[quote.tier].name} · ${q.words.toLocaleString("en-US")} · ${t.calc.turnLabels[quote.turn]} · ${money(q.total, quote.currency, lang)}`;
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();

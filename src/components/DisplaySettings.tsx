@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useApp, type Accent, type FontSize, type ThemePref } from "./Providers";
 
 const ACCENTS: { id: Accent; hex: string }[] = [
-  { id: "cobalt", hex: "#2563EB" }, { id: "violet", hex: "#7C3AED" }, { id: "teal", hex: "#0D9488" },
+  { id: "violet", hex: "#6954F5" }, { id: "cobalt", hex: "#2563EB" }, { id: "teal", hex: "#0D9488" },
   { id: "rose", hex: "#E11D48" }, { id: "amber", hex: "#B45309" }, { id: "slate", hex: "#334155" },
 ];
 const SIZES: FontSize[] = ["sm", "md", "lg", "xl"];

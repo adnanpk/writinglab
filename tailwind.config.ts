@@ -11,7 +11,7 @@ const config: Config = {
         cobalt: { DEFAULT: v("accent"), dark: v("accent-dark"), fg: v("accent-fg") },
         sky: { brand: v("sky") },
         emerald: { brand: v("emerald") },
-        navy: "#0F172A", // always-dark surface (hero panels, footer)
+        navy: "#120F2E", // always-dark surface (hero panels, footer)
       },
       fontFamily: {
         heading: ["var(--font-heading)", "var(--font-arabic)", "sans-serif"],

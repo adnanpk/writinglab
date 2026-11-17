@@ -30,6 +30,29 @@ const en = {
     premium: { name: "Premium Editing", tag: "Comprehensive editing & free re-editing", desc: "A senior editor from your field makes substantial improvements: correcting logic, structure and language, with detailed comments. Includes free formatting, free re-editing for 365 days and a free cover letter." },
     pro: { name: "Scientific Pro", tag: "For high-impact-factor journals", desc: "A senior editor plus a peer reviewer from your field strengthen the core science and novelty of your paper. Includes free re-editing, cover letter and response-to-reviewers editing after submission." },
   },
+  planFeatures: {
+    includes: { standard: "What's included:", premium: "Everything in Standard, plus:", pro: "Everything in Premium, plus:" },
+    standard: ["Grammar, spelling & punctuation", "Clarity & readability", "Plagiarism check (similarity report)", "Free formatting to journal style", "Track Changes + clean copy", "Certificate of Editing", "NDA available", "30 days free re-editing"],
+    premium: ["Logic, structure & flow", "Terminology consistency", "Detailed editor comments", "Human-voice rewrite", "Free cover letter", "365 days free re-editing"],
+    pro: ["Peer review by a subject expert", "Response-to-reviewers editing", "Focus on high-impact journals"],
+  },
+  pricing: {
+    wordsUnit: "words", compare: "Compare all features", controls: "Tailor your price",
+    strip: {
+      sample: { k: "Free", t: "Not sure yet?", d: "Send up to 500 words and get a free sample edit.", cta: "Get a free sample" },
+      writing: { k: "Writing", t: "Need it written?", d: "Research papers, theses and more, written with you.", cta: "See writing services" },
+      inst: { k: "Teams", t: "Universities & journals", d: "Bulk volumes and a dedicated editor team.", cta: "Contact us" },
+    },
+  },
+  personas: {
+    eyebrow: "Who it's for", title: "Built for researchers. Trusted by editors.",
+    items: [
+      { role: "For students", t: "Theses & dissertations", d: "Chapter-by-chapter editing so your argument reads clearly to your committee.", cta: "I'm a student" },
+      { role: "For researchers", t: "Journal manuscripts", d: "Language and structure polished to your target journal's standards.", cta: "I'm a researcher" },
+      { role: "For institutions", t: "Teams & journals", d: "Volume editing, consistent style and confidential handling.", cta: "I'm an institution" },
+    ],
+  },
+  cta: { title: "Get your manuscript ready now", sub: "Edited by native-speaker, PhD-qualified specialists. Start with a free sample.", primary: "Get a free sample", secondary: "Get an instant quote", note: "No payment needed to start." },
   trust: {
     items: [
       { t: "NDA on request", d: "Signed non-disclosure agreement for every project" },
@@ -41,22 +64,30 @@ const en = {
   matrix: {
     title: "Compare editing levels", sub: "Pick the depth of editing that fits your manuscript and your target journal.",
     feature: "What's included", yes: "Included", no: "Not included", recommended: "Recommended",
-    rows: [
-      { f: "Grammar, spelling & punctuation", v: [true, true, true] },
-      { f: "Clarity & readability", v: [true, true, true] },
-      { f: "Logic, structure & flow", v: [false, true, true] },
-      { f: "Terminology consistency", v: [false, true, true] },
-      { f: "Plagiarism check (similarity report)", v: [false, true, true] },
-      { f: "Human-voice rewrite (natural, human-edited style)", v: [false, true, true] },
-      { f: "Detailed editor comments", v: [false, true, true] },
-      { f: "Free formatting to journal style", v: [true, true, true] },
-      { f: "Free cover letter", v: [false, true, true] },
-      { f: "Free re-editing", v: ["30 days", "365 days", "365 days"] },
-      { f: "Peer review by a subject expert", v: [false, false, true] },
-      { f: "Response-to-reviewers editing", v: [false, false, true] },
-      { f: "Track Changes + clean copy", v: [true, true, true] },
-      { f: "Certificate of Editing", v: [true, true, true] },
-      { f: "NDA available", v: [true, true, true] },
+    groups: [
+      { g: "Language editing", rows: [
+        { f: "Grammar, spelling & punctuation", v: [true, true, true] },
+        { f: "Clarity & readability", v: [true, true, true] },
+        { f: "Logic, structure & flow", v: [false, true, true] },
+        { f: "Terminology consistency", v: [false, true, true] },
+      ] },
+      { g: "Integrity & quality", rows: [
+        { f: "Plagiarism check (similarity report)", v: [true, true, true] },
+        { f: "Human-voice rewrite (natural, human-edited style)", v: [false, true, true] },
+      ] },
+      { g: "Editor support", rows: [
+        { f: "Detailed editor comments", v: [false, true, true] },
+        { f: "Peer review by a subject expert", v: [false, false, true] },
+        { f: "Response-to-reviewers editing", v: [false, false, true] },
+      ] },
+      { g: "Delivery & guarantees", rows: [
+        { f: "Free formatting to journal style", v: [true, true, true] },
+        { f: "Free cover letter", v: [false, true, true] },
+        { f: "Free re-editing", v: ["30 days", "365 days", "365 days"] },
+        { f: "Track Changes + clean copy", v: [true, true, true] },
+        { f: "Certificate of Editing", v: [true, true, true] },
+        { f: "NDA available", v: [true, true, true] },
+      ] },
     ],
     cta: "Get a quote",
   },
@@ -201,6 +232,29 @@ const ar: typeof en = {
     premium: { name: "التحرير المتميز", tag: "تحرير شامل وإعادة تحرير مجانية", desc: "يجري محرّر أول من مجالك تحسينات جوهرية: تصحيح المنطق والبنية واللغة مع تعليقات مفصّلة. يشمل التنسيق وإعادة التحرير مجانًا لمدة 365 يومًا ورسالة تقديم مجانية." },
     pro: { name: "المحترف العلمي", tag: "للمجلات ذات معامل التأثير العالي", desc: "يعمل محرّر أول ومراجع أقران من مجالك على تقوية الجوهر العلمي وجِدّة بحثك. يشمل إعادة التحرير ورسالة التقديم وتحرير الرد على المحكّمين بعد التقديم." },
   },
+  planFeatures: {
+    includes: { standard: "ما يشمله:", premium: "كل ما في القياسي، بالإضافة إلى:", pro: "كل ما في المتميز، بالإضافة إلى:" },
+    standard: ["القواعد والإملاء وعلامات الترقيم", "الوضوح وسهولة القراءة", "فحص الانتحال (تقرير التشابه)", "تنسيق مجاني وفق أسلوب المجلة", "تتبّع التعديلات + نسخة نظيفة", "شهادة تحرير", "اتفاقية عدم إفصاح متاحة", "إعادة تحرير مجانية 30 يومًا"],
+    premium: ["المنطق والبنية والتسلسل", "اتساق المصطلحات", "تعليقات مفصّلة من المحرّر", "إعادة صياغة بأسلوب بشري طبيعي", "رسالة تقديم مجانية", "إعادة تحرير مجانية 365 يومًا"],
+    pro: ["مراجعة أقران من خبير في المجال", "تحرير الرد على المحكّمين", "تركيز على المجلات عالية التأثير"],
+  },
+  pricing: {
+    wordsUnit: "كلمة", compare: "قارن كل المزايا", controls: "خصّص سعرك",
+    strip: {
+      sample: { k: "مجاني", t: "لست متأكدًا بعد؟", d: "أرسل حتى 500 كلمة واحصل على عيّنة تحرير مجانية.", cta: "احصل على عيّنة مجانية" },
+      writing: { k: "كتابة", t: "تحتاج من يكتب؟", d: "أبحاث ورسائل وأكثر، تُكتب معك.", cta: "تعرّف على خدمات الكتابة" },
+      inst: { k: "فرق", t: "الجامعات والمجلات", d: "كميات كبيرة وفريق محرّرين مخصص.", cta: "تواصل معنا" },
+    },
+  },
+  personas: {
+    eyebrow: "لمن هذه الخدمة", title: "مصمّمة للباحثين. موثوقة لدى المحرّرين.",
+    items: [
+      { role: "للطلاب", t: "الرسائل والأطروحات", d: "تحرير فصلًا بفصل لتُقرأ حجتك بوضوح أمام لجنتك.", cta: "أنا طالب" },
+      { role: "للباحثين", t: "أبحاث المجلات", d: "لغة وبنية مصقولة وفق معايير مجلتك المستهدفة.", cta: "أنا باحث" },
+      { role: "للمؤسسات", t: "الفرق والمجلات", d: "تحرير بكميات كبيرة وأسلوب موحّد وتعامل سرّي.", cta: "أنا مؤسسة" },
+    ],
+  },
+  cta: { title: "جهّز بحثك الآن", sub: "يحرّره متخصصون ناطقون بالإنجليزية وحاصلون على الدكتوراه. ابدأ بعيّنة مجانية.", primary: "احصل على عيّنة مجانية", secondary: "احصل على عرض سعر فوري", note: "لا حاجة للدفع للبدء." },
   trust: {
     items: [
       { t: "اتفاقية عدم إفصاح", d: "اتفاقية موقّعة لكل مشروع عند الطلب" },
@@ -212,22 +266,30 @@ const ar: typeof en = {
   matrix: {
     title: "قارن مستويات التحرير", sub: "اختر عمق التحرير المناسب لبحثك ومجلتك المستهدفة.",
     feature: "ما يشمله", yes: "مشمول", no: "غير مشمول", recommended: "موصى به",
-    rows: [
-      { f: "القواعد والإملاء وعلامات الترقيم", v: [true, true, true] },
-      { f: "الوضوح وسهولة القراءة", v: [true, true, true] },
-      { f: "المنطق والبنية والتسلسل", v: [false, true, true] },
-      { f: "اتساق المصطلحات", v: [false, true, true] },
-      { f: "فحص الانتحال (تقرير التشابه)", v: [false, true, true] },
-      { f: "إعادة صياغة بأسلوب بشري طبيعي", v: [false, true, true] },
-      { f: "تعليقات مفصّلة من المحرّر", v: [false, true, true] },
-      { f: "تنسيق مجاني وفق أسلوب المجلة", v: [true, true, true] },
-      { f: "رسالة تقديم مجانية", v: [false, true, true] },
-      { f: "إعادة تحرير مجانية", v: ["30 يومًا", "365 يومًا", "365 يومًا"] },
-      { f: "مراجعة أقران من خبير في المجال", v: [false, false, true] },
-      { f: "تحرير الرد على المحكّمين", v: [false, false, true] },
-      { f: "تتبّع التعديلات + نسخة نظيفة", v: [true, true, true] },
-      { f: "شهادة تحرير", v: [true, true, true] },
-      { f: "اتفاقية عدم إفصاح متاحة", v: [true, true, true] },
+    groups: [
+      { g: "التحرير اللغوي", rows: [
+        { f: "القواعد والإملاء وعلامات الترقيم", v: [true, true, true] },
+        { f: "الوضوح وسهولة القراءة", v: [true, true, true] },
+        { f: "المنطق والبنية والتسلسل", v: [false, true, true] },
+        { f: "اتساق المصطلحات", v: [false, true, true] },
+      ] },
+      { g: "النزاهة والجودة", rows: [
+        { f: "فحص الانتحال (تقرير التشابه)", v: [true, true, true] },
+        { f: "إعادة صياغة بأسلوب بشري طبيعي", v: [false, true, true] },
+      ] },
+      { g: "دعم المحرّر", rows: [
+        { f: "تعليقات مفصّلة من المحرّر", v: [false, true, true] },
+        { f: "مراجعة أقران من خبير في المجال", v: [false, false, true] },
+        { f: "تحرير الرد على المحكّمين", v: [false, false, true] },
+      ] },
+      { g: "التسليم والضمانات", rows: [
+        { f: "تنسيق مجاني وفق أسلوب المجلة", v: [true, true, true] },
+        { f: "رسالة تقديم مجانية", v: [false, true, true] },
+        { f: "إعادة تحرير مجانية", v: ["30 يومًا", "365 يومًا", "365 يومًا"] },
+        { f: "تتبّع التعديلات + نسخة نظيفة", v: [true, true, true] },
+        { f: "شهادة تحرير", v: [true, true, true] },
+        { f: "اتفاقية عدم إفصاح متاحة", v: [true, true, true] },
+      ] },
     ],
     cta: "احصل على عرض سعر",
   },

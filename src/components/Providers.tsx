@@ -5,9 +5,9 @@ import { DEFAULT_QUOTE, type QuoteInput } from "@/lib/pricing";
 
 export type ThemePref = "auto" | "light" | "dark";
 export type FontSize = "sm" | "md" | "lg" | "xl";
-export type Accent = "cobalt" | "violet" | "teal" | "rose" | "amber" | "slate";
+export type Accent = "violet" | "cobalt" | "teal" | "rose" | "amber" | "slate";
 export interface Prefs { lang: Lang; theme: ThemePref; fs: FontSize; accent: Accent }
-const DEFAULT_PREFS: Prefs = { lang: "en", theme: "auto", fs: "md", accent: "cobalt" };
+const DEFAULT_PREFS: Prefs = { lang: "en", theme: "auto", fs: "md", accent: "violet" };
 export const STORAGE_KEY = "wl-prefs";
 
 interface Ctx {

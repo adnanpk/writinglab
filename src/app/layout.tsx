@@ -31,11 +31,11 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = {
   width: "device-width", initialScale: 1,
-  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#FFFFFF" }, { media: "(prefers-color-scheme: dark)", color: "#080D1A" }],
+  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#F8F7F8" }, { media: "(prefers-color-scheme: dark)", color: "#110E24" }],
 };
 
 // Runs before paint: applies saved (or device-derived) theme, text size, accent and language - no flash.
-const INIT = `(function(){try{var p=JSON.parse(localStorage.getItem('wl-prefs')||'{}');var d=document.documentElement;var th=p.theme||'auto';if(th==='auto')th=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',th);d.setAttribute('data-fs',p.fs||'md');d.setAttribute('data-accent',p.accent||'cobalt');var l=p.lang;if(!l){var ls=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'en'];l=ls.some(function(x){return /^ar/i.test(x)})?'ar':'en'}d.lang=l;d.dir=l==='ar'?'rtl':'ltr'}catch(e){}})();`;
+const INIT = `(function(){try{var p=JSON.parse(localStorage.getItem('wl-prefs')||'{}');var d=document.documentElement;var th=p.theme||'auto';if(th==='auto')th=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',th);d.setAttribute('data-fs',p.fs||'md');d.setAttribute('data-accent',p.accent||'violet');var l=p.lang;if(!l){var ls=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'en'];l=ls.some(function(x){return /^ar/i.test(x)})?'ar':'en'}d.lang=l;d.dir=l==='ar'?'rtl':'ltr'}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
