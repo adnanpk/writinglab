@@ -11,7 +11,7 @@ const en = {
     lang: "Language", reset: "Reset to defaults",
   },
   hero: {
-    badge: "Native-speaker, PhD-qualified editors",
+    badge: "Native speakers, PhD-qualified & expert editors",
     h1: "Publication-ready English, edited by subject specialists",
     sub: "Every manuscript is edited by a native English speaker with a PhD in your field. Get a live price in seconds, track every change, and re-submit free.",
     points: ["Confidential: NDA available on request", "Tracked changes + editor comments", "Free sample edit before you commit"],
@@ -213,7 +213,7 @@ const ar: typeof en = {
     lang: "اللغة", reset: "استعادة الإعدادات الافتراضية",
   },
   hero: {
-    badge: "محرّرون ناطقون بالإنجليزية وحاصلون على الدكتوراه",
+    badge: "ناطقون بالإنجليزية، وحاصلون على الدكتوراه، ومحرّرون خبراء",
     h1: "إنجليزية جاهزة للنشر، يحرّرها متخصصون في مجالك",
     sub: "يحرّر كل بحث محرّر ناطق بالإنجليزية يحمل دكتوراه في تخصصك. احصل على السعر فورًا، وتتبّع كل تعديل، وأعد الإرسال مجانًا.",
     points: ["سرّية تامة: اتفاقية عدم إفصاح عند الطلب", "تتبّع التعديلات مع ملاحظات المحرّر", "عيّنة تحرير مجانية قبل الالتزام"],
