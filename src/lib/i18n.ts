@@ -155,6 +155,7 @@ const en = {
     thanksTitle: "Thank you. We've got it!", thanksBody: "We've received your request and will email you shortly.", ref: "Your reference", whatsappCta: "Continue on WhatsApp", done: "Done",
   },
   footer: {
+    slogan: "Your research, in its best English.",
     tag: "English editing & writing services by native-speaker, PhD-qualified specialists.",
     services: "Services", company: "Company", contact: "Contact", legal: "Legal", terms: "Terms of Service", privacy: "Privacy Policy", refund: "Refund Policy",
     email: "Email", whatsapp: "WhatsApp", phone: "Phone", address: "Address", soon: "Coming soon", rights: "All rights reserved.", follow: "Follow us",
@@ -357,6 +358,7 @@ const ar: typeof en = {
     thanksTitle: "شكرًا لك، استلمنا طلبك!", thanksBody: "استلمنا طلبك وسنراسلك عبر البريد قريبًا.", ref: "رقمك المرجعي", whatsappCta: "تابع عبر واتساب", done: "تم",
   },
   footer: {
+    slogan: "بحثك… بأفضل إنجليزية.",
     tag: "خدمات التحرير والكتابة بالإنجليزية على يد متخصصين ناطقين بها وحاصلين على الدكتوراه.",
     services: "الخدمات", company: "الشركة", contact: "تواصل معنا", legal: "القانونية", terms: "شروط الخدمة", privacy: "سياسة الخصوصية", refund: "سياسة الاسترداد",
     email: "البريد", whatsapp: "واتساب", phone: "الهاتف", address: "العنوان", soon: "قريبًا", rights: "جميع الحقوق محفوظة.", follow: "تابعنا",

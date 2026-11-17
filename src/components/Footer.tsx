@@ -17,7 +17,8 @@ export default function Footer() {
       <div className="container-x grid gap-10 pb-10 pt-16 md:grid-cols-4">
         <div>
           <Logo light />
-          <p className="mt-4 text-sm text-muted">{f.tag}</p>
+          <p className="mt-4 font-heading text-base font-bold text-cobalt-fg">{f.slogan}</p>
+          <p className="mt-2 text-sm text-muted">{f.tag}</p>
           <ul className="mt-5 flex flex-wrap gap-2" aria-label="Trust">
             {t.trust.items.slice(0, 2).map((x) => (<li key={x.t} className="rounded-full border border-line px-3 py-1 text-[11px] font-semibold text-muted">{x.t}</li>))}
           </ul>
