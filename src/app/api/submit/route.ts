@@ -17,11 +17,24 @@ function limited(ip: string) {
   return arr.length > 6;
 }
 
+function driveAuthConfigured() {
+  const e = process.env;
+  return !!e.GOOGLE_DRIVE_FOLDER_ID && (!!(e.GOOGLE_CLIENT_ID && e.GOOGLE_CLIENT_SECRET && e.GOOGLE_REFRESH_TOKEN) || !!(e.GOOGLE_SERVICE_ACCOUNT_EMAIL && e.GOOGLE_PRIVATE_KEY));
+}
+
 async function saveToDrive(ref: string, details: string, file: File | null) {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL, key = process.env.GOOGLE_PRIVATE_KEY, parent = process.env.GOOGLE_DRIVE_FOLDER_ID;
-  if (!email || !key || !parent) return null;
+  if (!driveAuthConfigured()) return null;
+  const parent = process.env.GOOGLE_DRIVE_FOLDER_ID!;
   const { google } = await import("googleapis");
-  const auth = new google.auth.JWT({ email, key: key.replace(/\\n/g, "\n"), scopes: ["https://www.googleapis.com/auth/drive"] });
+  // Personal Gmail Drive: OAuth refresh token (files are owned by you). Workspace shared drive: service account.
+  let auth;
+  if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_REFRESH_TOKEN) {
+    const oauth = new google.auth.OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
+    oauth.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
+    auth = oauth;
+  } else {
+    auth = new google.auth.JWT({ email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL!, key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"), scopes: ["https://www.googleapis.com/auth/drive"] });
+  }
   const drive = google.drive({ version: "v3", auth });
   const folder = await drive.files.create({ requestBody: { name: ref, mimeType: "application/vnd.google-apps.folder", parents: [parent] }, fields: "id,webViewLink", supportsAllDrives: true });
   const folderId = folder.data.id!;
@@ -39,13 +52,15 @@ async function saveToDrive(ref: string, details: string, file: File | null) {
   return folder.data.webViewLink ?? null;
 }
 
-async function sendEmails(ref: string, d: Record<string, string>, details: string, driveLink: string | null) {
+async function sendEmails(ref: string, d: Record<string, string>, details: string, driveLink: string | null, file: File | null) {
   const key = process.env.RESEND_API_KEY, to = process.env.LEADS_TO_EMAIL, from = process.env.LEADS_FROM_EMAIL;
   if (!key || !to || !from) return false;
   const { Resend } = await import("resend");
   const resend = new Resend(key);
-  const html = `<h2>New ${esc(d.type)} request: ${esc(ref)}</h2><pre style="font:14px/1.5 monospace;white-space:pre-wrap">${esc(details)}</pre>${driveLink ? `<p><a href="${esc(driveLink)}">Open Drive folder</a></p>` : "<p>(No Drive folder configured)</p>"}`;
-  const r1 = await resend.emails.send({ from, to, replyTo: d.email, subject: `[Writing Lab] ${d.type} ${ref} from ${d.name}`, html });
+  const cc = (process.env.LEADS_CC_EMAIL || "").split(",").map((x) => x.trim()).filter(Boolean);
+  const attachments = file ? [{ filename: file.name, content: Buffer.from(await file.arrayBuffer()) }] : undefined;
+  const html = `<h2>New ${esc(d.type)} request: ${esc(ref)}</h2><pre style="font:14px/1.5 monospace;white-space:pre-wrap">${esc(details)}</pre>${driveLink ? `<p><a href="${esc(driveLink)}">Open Drive folder</a></p>` : file ? "<p>The manuscript is attached to this email.</p>" : ""}`;
+  const r1 = await resend.emails.send({ from, to, ...(cc.length ? { cc } : {}), ...(attachments ? { attachments } : {}), replyTo: d.email, subject: `[Writing Lab] ${d.type} ${ref} from ${d.name}`, html });
   if (r1.error) throw new Error(r1.error.message);
   // acknowledgement to the customer (best-effort)
   const ar = d.lang === "ar";
@@ -83,7 +98,7 @@ export async function POST(req: Request) {
     quoteLabel ? `Quote: ${quoteLabel}` : "", `File: ${file ? `${file.name} (${(file.size / 1024).toFixed(0)} KB)` : "-"}`, `Notes: ${d.notes || "-"}`,
   ].filter(Boolean).join("\n");
 
-  const configured = !!(process.env.RESEND_API_KEY || process.env.GOOGLE_DRIVE_FOLDER_ID);
+  const configured = !!(process.env.RESEND_API_KEY || driveAuthConfigured());
   if (!configured) {
     if (process.env.NODE_ENV === "production") return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
     console.log("[submit:dev]\n" + details); // dev only: nothing configured yet
@@ -91,7 +106,7 @@ export async function POST(req: Request) {
   }
   try {
     const link = await saveToDrive(ref, details, file);
-    const mailed = await sendEmails(ref, d, details, link);
+    const mailed = await sendEmails(ref, d, details, link, file);
     if (!link && !mailed) throw new Error("nothing delivered");
     return NextResponse.json({ ok: true, ref });
   } catch (e) {
